@@ -29,3 +29,9 @@ ELSE
    DISPLAY" Contact not found"
 END IF 
 END FUNCTION 
+// 2. View Contacts Algorithm
+FUNCTION viewContacts()
+    IF contactListModel IS EMPTY
+        DISPLAY "No contacts to display."
+    END IF
+END FUNCTION
