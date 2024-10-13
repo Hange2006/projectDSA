@@ -45,3 +45,50 @@ public class Phonebook implements ActionListener {
                 }
             }
         });
+    phoneField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!Character.isDigit(c)) {
+                    e.consume(); // Ignore non-digit input
+                }
+            }
+        });
+
+        sidebar.add(nameField);
+        sidebar.add(Box.createVerticalStrut(10)); // Spacer
+        sidebar.add(phoneField);
+        sidebar.add(Box.createVerticalStrut(10));
+        sidebar.add(searchField);
+
+        // Buttons with icons
+        addButton = createButton("Add", new Color(0, 153, 76));
+        viewButton = createButton("View", new Color(51, 102, 255));
+        searchButton = createButton("Search", new Color(255, 153, 
+     51));
+        deleteButton = createButton("Delete", new Color(204, 0, 0));
+        updateButton = createButton("Update", new Color(102, 0, 153));
+
+        sidebar.add(addButton);
+        sidebar.add(viewButton);
+        sidebar.add(searchButton);
+        sidebar.add(deleteButton);
+        sidebar.add(updateButton);
+
+        // Contact list display area
+        contactListModel = new DefaultListModel<>();
+        contactList = new JList<>(contactListModel);
+        contactList.setBackground(new Color(200, 200, 200));
+        contactList.setFont(new Font("Arial", Font.PLAIN, 14));
+        contactList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        JScrollPane scrollPane = new JScrollPane(contactList);
+        scrollPane.setBorder(new EmptyBorder(10, 10, 10, 10));
+ 
+         
+        // Add components to frame
+        frame.add(sidebar, BorderLayout.WEST);
+        frame.add(scrollPane, BorderLayout.CENTER);
+        
+        // Show the frame
+        frame.setVisible(true);
+    }
