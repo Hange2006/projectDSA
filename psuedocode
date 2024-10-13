@@ -1,4 +1,4 @@
-Add Contact Algorithm
+//Add Contact Algorithm
 FUNCTION addContact(name, phone)
     IF name IS NOT EMPTY AND phone IS NOT EMPTY
         IF NOT isDuplicateContact(name, phone, null, null)
@@ -14,6 +14,8 @@ FUNCTION addContact(name, phone)
         DISPLAY "Please enter both name and phone number."
     END IF
 END FUNCTION
+
+//Search Contacts Algorithm
 FUNCTION serchContacts(searchTerm)
    SET result TO EMPTY STRING
    SET found TO FALSE
@@ -52,3 +54,26 @@ FUNCTION deleteContact()
     END IF
 END FUNCTION
 
+//Update Contact Algorithm
+FUNCTION updateContact()
+    SET selectedContact TO SELECTED contact FROM contactList
+
+    IF selectedContact IS NOT NULL
+        PARSE selectedContact TO currentName, currentPhone
+
+        PROMPT newName FROM USER WITH DEFAULT currentName
+        PROMPT newPhone FROM USER WITH DEFAULT currentPhone
+
+        IF newName IS NOT NULL AND newPhone IS NOT NULL
+            IF NOT isDuplicateContact(newName, newPhone, currentName, currentPhone)
+                updatedContact = "Name: " + newName + ", Phone: " + newPhone
+                UPDATE contactListModel AT selected index WITH updatedContact
+                DISPLAY "Contact updated successfully."
+            ELSE
+                DISPLAY "This contact already exists. Please enter a unique name and phone number."
+            END IF
+        END IF
+    ELSE
+        DISPLAY "Please select a contact to update."
+    END IF
+END FUNCTION
