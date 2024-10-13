@@ -214,6 +214,42 @@ public class Phonebook implements ActionListener {
             }
         }
     }
+                return true;
+// Duplicate found
+      private boolean isDuplicateContact(String name, String phone, String originalName, String originalPhone) {
+        for (int i = 0; i < contactListModel.size(); i++) {
+            String contact = contactListModel.get(i);
+            String[] parts = contact.split(", ");
+                if (existingName.equalsIgnoreCase(name) || existingPhone.equals(phone)) {
+        String existingName = parts[0].substring(6);
+            String existingPhone = parts[1].substring(7);
+
+            // Skip the original contact being updated
+            if (originalName != null && existingName.equalsIgnoreCase(originalName) && existingPhone.equals(originalPhone)) {
+                continue;
+            }
+
+          }
+        }
+        return false; // No duplicates
+    }
+
+    private void sortContacts() {
+        ArrayList<String> contactListArray = new ArrayList<>();
+        for (int i = 0; i < contactListModel.size(); i++) {
+            contactListArray.add(contactListModel.get(i));
+        }
+        Collections.sort(contactListArray);
+        contactListModel.clear();
+        for (String contact : contactListArray) {
+            contactListModel.addElement(contact);
+        }
+    }
+
+    public static void main(String[] args) {
+        new Phonebook();
+    }
+}
 
 
 
