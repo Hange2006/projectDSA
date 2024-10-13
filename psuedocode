@@ -77,3 +77,19 @@ FUNCTION updateContact()
         DISPLAY "Please select a contact to update."
     END IF
 END FUNCTION
+
+// Sort Contacts Algorithm
+FUNCTION sortContacts()
+    CREATE an EMPTY LIST called contactListArray
+
+    FOR EACH contact IN contactListModel
+        ADD contact TO contactListArray
+    END FOR
+
+    SORT contactListArray IN alphabetical order
+
+    CLEAR contactListModel
+    FOR EACH contact IN contactListArray
+        ADD contact TO contactListModel
+    END FOR
+END FUNCTION
