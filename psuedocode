@@ -1,0 +1,16 @@
+ Add Contact Algorithm
+FUNCTION addContact(name, phone)
+    IF name IS NOT EMPTY AND phone IS NOT EMPTY
+        IF NOT isDuplicateContact(name, phone, null, null)
+            contact = "Name: " + name + ", Phone: " + phone
+            ADD contact TO contactListModel
+            CALL sortContacts()
+            CLEAR nameField AND phoneField
+            DISPLAY "Contact successfully added."
+        ELSE
+            DISPLAY "This contact already exists. Please enter a unique name and phone number."
+        END IF
+    ELSE
+        DISPLAY "Please enter both name and phone number."
+    END IF
+END FUNCTION
