@@ -64,11 +64,10 @@ public class Phonebook implements ActionListener {
         // Buttons with icons
         addButton = createButton("Add", new Color(0, 153, 76));
         viewButton = createButton("View", new Color(51, 102, 255));
-        searchButton = createButton("Search", new Color(255, 153, 
-     51));
+        searchButton = createButton("Search", new Color(255, 153,51)); 
+     
         deleteButton = createButton("Delete", new Color(204, 0, 0));
         updateButton = createButton("Update", new Color(102, 0, 153));
-
         sidebar.add(addButton);
         sidebar.add(viewButton);
         sidebar.add(searchButton);
