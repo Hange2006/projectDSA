@@ -14,3 +14,18 @@ FUNCTION addContact(name, phone)
         DISPLAY "Please enter both name and phone number."
     END IF
 END FUNCTION
+FUNCTION serchContacts(searchTerm)
+   SET result TO EMPTY STRING
+   SET found TO FALSE
+FOR EACH contact IN contactListModel
+ IF contact CONTAINS searchTerm (case-insensitive)
+     APPEND contact TO results
+     SET found TO TRUE
+END IF 
+END FOR
+IF found 
+   DISPLAY results IN contact list
+ELSE 
+   DISPLAY" Contact not found"
+END IF 
+END FUNCTION 
