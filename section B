@@ -92,3 +92,49 @@ public class Phonebook implements ActionListener {
         // Show the frame
         frame.setVisible(true);
     }
+    private JTextArea createTextArea(String placeholder) {
+        JTextArea area = new JTextArea(1, 20);
+        area.setText(placeholder);
+        area.setFont(new Font("Arial", Font.ITALIC, 14));
+        area.setForeground(Color.LIGHT_GRAY);
+        area.setBackground(new Color(80, 80, 80));
+        area.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(70, 70, 70)),
+                BorderFactory.createEmptyBorder(5, 5, 5, 5)
+        ));
+        area.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (area.getText().equals(placeholder)) {
+                    area.setText("");
+                    area.setForeground(Color.WHITE);
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (area.getText().isEmpty()) {
+                    area.setText(placeholder);
+                    area.setForeground(Color.LIGHT_GRAY);
+                }
+            }
+        });
+        return area;
+    }
+
+    private JButton createButton(String text, Color color) {
+        JButton button = new JButton(text);
+        button.setBackground(color);
+        button.setForeground(Color.WHITE);
+        button.setFont(new Font("Arial", Font.BOLD, 14));
+        button.setFocusPainted(false);
+        button.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(Color.BLACK),
+                BorderFactory.createEmptyBorder(5, 15, 5, 15)
+        ));
+        button.addActionListener(this);
+        return button;
+    }
+
+
+
