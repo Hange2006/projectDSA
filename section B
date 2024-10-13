@@ -135,5 +135,41 @@ public class Phonebook implements ActionListener {
         return button;
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == addButton) {
+            String name = nameField.getText().trim();
+            String phone = phoneField.getText().trim();
+            if (!name.isEmpty() && !phone.isEmpty()) {
+                if (!isDuplicateContact(name, phone, null, null)) { // Check for duplicates
+                    String contact = "Name: " + name + ", Phone: " + phone;
+                    contactListModel.addElement(contact);
+                    sortContacts(); // Sort after adding
+                    nameField.setText("");
+                    phoneField.setText("");
+                    JOptionPane.showMessageDialog(frame, "Contact successfully added.");
+                } else {
+                    JOptionPane.showMessageDialog(frame, "This contact already exists. Please enter a unique name and phone number.");
+                }
+            } else {
+                JOptionPane.showMessageDialog(frame, "Please enter both name and phone number.");
+            }
+        } else if (e.getSource() == viewButton) {
+            if (contactListModel.isEmpty()) {
+                JOptionPane.showMessageDialog(frame, "No contacts to display.");
+            }
+        } else if (e.getSource() == searchButton) {
+            String search = searchField.getText().trim();
+            StringBuilder results = new StringBuilder();
+            boolean found = false;
+
+            for (int i = 0; i < contactListModel.size(); i++) {
+                String contact = contactListModel.get(i);
+                if (contact.toLowerCase().contains(search.toLowerCase())) {
+                    results.append(contact).append("\n");
+                    found = true;
+                }
+            }
+
 
 
