@@ -1,4 +1,4 @@
- Add Contact Algorithm
+Add Contact Algorithm
 FUNCTION addContact(name, phone)
     IF name IS NOT EMPTY AND phone IS NOT EMPTY
         IF NOT isDuplicateContact(name, phone, null, null)
@@ -29,9 +29,26 @@ ELSE
    DISPLAY" Contact not found"
 END IF 
 END FUNCTION 
-// 2. View Contacts Algorithm
+
+//View Contacts Algorithm
 FUNCTION viewContacts()
     IF contactListModel IS EMPTY
         DISPLAY "No contacts to display."
     END IF
 END FUNCTION
+
+//Delete Contact Algorithm
+FUNCTION deleteContact()
+    SET selectedContact TO SELECTED contact FROM contactList
+
+    IF selectedContact IS NOT NULL
+        PROMPT USER TO CONFIRM "Are you sure you want to delete the selected contact?"
+        IF USER CONFIRMS
+            REMOVE selectedContact FROM contactListModel
+            DISPLAY "Contact deleted successfully."
+        END IF
+    ELSE
+        DISPLAY "Please select a contact to delete."
+    END IF
+END FUNCTION
+
