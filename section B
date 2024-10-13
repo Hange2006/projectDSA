@@ -1,0 +1,47 @@
+package phonebook;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.DefaultListModel;
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class Phonebook implements ActionListener {
+
+    JFrame frame;
+    JTextArea nameField, phoneField, searchField;
+    JList<String> contactList;
+    DefaultListModel<String> contactListModel;
+    JButton addButton, viewButton, searchButton, deleteButton, updateButton;
+
+    public Phonebook() {
+        // Frame settings
+        frame = new JFrame("Phonebook - Revamped");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(600, 400);
+        frame.setLayout(new BorderLayout());
+        
+        // Sidebar panel
+        JPanel sidebar = new JPanel();
+        sidebar.setLayout(new BoxLayout(sidebar, BoxLayout.Y_AXIS));
+        sidebar.setBackground(new Color(50, 50, 50));
+        sidebar.setBorder(new EmptyBorder(10, 10, 10, 10));
+
+        // Text areas with padding
+        nameField = createTextArea("Enter Name");
+        phoneField = createTextArea("Enter Phone");
+        searchField = createTextArea("Search Contacts");
+
+        // Add KeyListeners for input validation
+        nameField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
+                    e.consume(); // Ignore non-letter input
+                }
+            }
+        });
